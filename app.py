@@ -83,6 +83,7 @@ def dashboard():
 def signup():
     form = SignupForm()
     if form.validate_on_submit():
+        session = db.session()
         hashed_password = bcrypt.generate_password_hash(form.password.data)
         user = User(username=form.username.data, password = hashed_password)
         db.session.add(user)
